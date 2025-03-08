@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Redesign</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #232f3e;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #232f3e;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .menu-icon {
+            margin-right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .menu-dropdown {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            color: black;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .menu-open {
+            display: block;
+        }
+        .menu-dropdown h3 {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .menu-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+        .user-options a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .category-nav {
+            display: flex;
+        justify-content: center;
+        background-color: #37475a;
+        padding: 10px;
+        position: relative;
+        z-index: 900;
+        gap: 20px;
+        }
+        .category-nav div {
+            margin: 0 15px;
+            cursor: pointer;
+            position: relative;
+        }
+        .subnav-item {
+        position: relative; /* Ensures dropdown is positioned relative to this */
+        padding: 10px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        }
+        .subnav-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            width: 200px; /* Adjust width */
+            top: 40px; /* Moves the dropdown closer to the category */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: left;
+            z-index: 1000;
+        }
+        .subnav-item:hover .subnav-dropdown {
+            display: block;
+        }
+        .subnav-dropdown a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: black;
+            font-weight: normal;
+        }
+        .subnav-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        .hero {
+            text-align: center;
+            background: #febd69;
+            padding: 30px;
+            color: #232f3e;
+        }
+        .hero h1 {
+            margin: 0;
+        }
+        footer {
+            background: #131921;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: auto;
+        }
+        .content-sections {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 20px;
+        gap: 10px;
+    }
+        .content-section {
+        flex: 1;
+        background: white;
+        color: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        min-width: 250px;
+        text-align: center;
+    }
+    .product-section {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .product-feature-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .product-feature {
+        background: white;
+        color: black;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        text-align: center;
+    }
+    .product-feature img {
+        max-width: 100px;
+        display: block;
+        margin: 0 auto 10px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo" onclick="toggleMenu()">
+                <span class="menu-icon">☰</span>
+                Amazon
+            </div>
+            <input type="text" placeholder="Search products" class="search-bar">
+            <div class="user-options">
+                <a href="blank.html">Account</a>
+                <a href="blank.html">Orders</a>
+                <a href="blank.html">Cart</a>
+            </div>
+        </div>
+
+        <div class="category-nav">
+
+            <div class="subnav-item">Electronics
+                <div class="subnav-dropdown">
+                    <a href="blank.html">Phones</a>
+                    <a href="blank.html">TVs</a>
+                    <a href="blank.html">Laptops</a>
+                </div>
+            </div>
+
+            <div class="subnav-item">Clothing
+                <div class="subnav-dropdown">
+                    <a href="blank.html">Men</a>
+                    <a href="blank.html">Women</a>
+                    <a href="blank.html">Kids</a>
+                </div>
+            </div>
+
+            <div class="subnav-item">Home & Kitchen
+                <div class="subnav-dropdown">
+                    <a href="blank.html">Cooking</a>
+                    <a href="blank.html">Furniture</a>
+                    <a href="blank.html">Rugs</a>
+                </div>
+            </div>
+            
+        
+            <div class="subnav-item">Books
+                <div class="subnav-dropdown">
+                    <a href="blank.html">Fiction</a>
+                    <a href="blank.html">Non-Fiction</a>
+                    <a href="blank.html">Biography</a>
+                </div>
+            </div>
+
+            <div class="subnav-item">Health & Beauty
+                <div class="subnav-dropdown">
+                    <a href="blank.html">Pharmacy</a>
+                    <a href="blank.html">Makeup</a>
+                    <a href="blank.html">perfume</a>
+                </div>
+            </div>
+        
+        </header>
+        
+        <section class="hero">
+            <h1>Welcome to Amazon</h1>
+        </section>
+        <section class="content-sections">
+            <div class="content-section">
+                <h3>Trending Deals</h3>
+                <p>Check out the hottest discounts on popular products.</p>
+            </div>
+            <div class="content-section">
+                <h3>Recommended for You</h3>
+                <p>Personalized suggestions based on your browsing history.</p>
+            </div>
+            <div class="content-section">
+                <h3>New Arrivals</h3>
+                <p>Explore the latest products just added to our store.</p>
+            </div>
+            <div class="content-section">
+                <h3>Top Rated</h3>
+                <p>Discover the best-rated products from our customers.</p>
+            </div>
+            <div class="content-section">
+                <h3>Best Sellers</h3>
+                <p>Find out what’s trending in various categories.</p>
+            </div>
+            <div class="content-section">
+                <h3>Customer Favorites</h3>
+                <p>Shop items that customers keep coming back for.</p>
+            </div>
+        </section>
+        <section class="product-section">
+            <h2>Featured Products</h2>
+            <div class="product-feature-container">
+                <div class="product-feature">
+                    <img src="echo.jpg" alt="Amazon Echo">
+                    <h3>Amazon Echo</h3>
+                    <p>Smart speaker with Alexa voice control.</p>
+                    <p><strong>$99.99</strong></p>
+                </div>
+                <div class="product-feature">
+                    <img src="kindle.jpg" alt="Amazon Kindle">
+                    <h3>Amazon Kindle</h3>
+                    <p>Portable e-reader with a glare-free display.</p>
+                    <p><strong>$129.99</strong></p>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="menu-dropdown" id="sideMenu">
+        <h3>Trending</h3>
+        <a href="blank.html">Best Sellers</a>
+        <a href="blank.html">New Releases</a>
+        <h3>Digital Content & Devices</h3>
+        <a href="blank.html">Prime Video</a>
+        <a href="blank.html">Amazon Music</a>
+        <a href="blank.html">Echo & Alexa</a>
+        <a href="blank.html">Fire Tablets</a>
+        <a href="blank.html">Fire TV</a>
+        <h3>Shop by Department</h3>
+        <a href="blank.html">Clothing</a>
+        <a href="blank.html">Amazon Fresh</a>
+        <a href="blank.html">Whole Foods Market</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Amazon Redesign</p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('menu-open');
+        }
+    </script>
+</body>
+</html>
